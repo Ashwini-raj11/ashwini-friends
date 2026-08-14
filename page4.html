@@ -78,53 +78,95 @@
         </form>
 
     </main>
-
     <script type="module">
-        import { db } from "./firebase.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-        const ifWasForm = document.getElementById("ifWasForm");
+import { db } from "./firebase.js";
+import {
+    collection,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-        ifWasForm.addEventListener("submit",async function(event) {
 
-            event.preventDefault();
+const ifWasForm = document.getElementById("ifWasForm");
 
-            const formData = new FormData(ifWasForm);
 
-            const answers = {
+ifWasForm.addEventListener("submit", async function(event) {
 
-                flower: formData.get("flower"),
-                actress: formData.get("actress"),
-                song: formData.get("song"),
-                food: formData.get("food"),
-                place: formData.get("place"),
-                animal: formData.get("animal"),
-                colour: formData.get("colour"),
-                cartoon: formData.get("cartoon"),
-                sweet: formData.get("sweet"),
-                fruit: formData.get("fruit")
+    event.preventDefault();
 
-            };
-const selectedPerson = localStorage.getItem("selectedPerson");
 
-localStorage.setItem(
-    "ifWasAnswers_" + selectedPerson,
-    JSON.stringify(answers)
-);
-    await addDoc(collection(db, "responses"), {
-    person: selectedPerson,
-    section: "ifWas",
-    answers: answers,
-    createdAt: new Date()
+    const formData = new FormData(ifWasForm);
+
+
+    const answers = {
+
+        flower: formData.get("flower"),
+        actress: formData.get("actress"),
+        song: formData.get("song"),
+        food: formData.get("food"),
+        place: formData.get("place"),
+        animal: formData.get("animal"),
+        colour: formData.get("colour"),
+        cartoon: formData.get("cartoon"),
+        sweet: formData.get("sweet"),
+        fruit: formData.get("fruit")
+
+    };
+
+
+    const selectedPerson =
+        localStorage.getItem("selectedPerson");
+
+
+    // Keep localStorage backup
+    localStorage.setItem(
+        "ifWasAnswers_" + selectedPerson,
+        JSON.stringify(answers)
+    );
+
+
+    // Try saving to Firebase
+    try {
+
+        await addDoc(
+            collection(db, "responses"),
+            {
+                person: selectedPerson,
+                section: "ifWas",
+                answers: answers,
+                createdAt: new Date()
+            }
+        );
+
+        console.log("Page 4 saved to Firebase ✅");
+
+    } catch (error) {
+
+        console.error(
+            "Firebase save failed:",
+            error
+        );
+
+    }
+
+
+    // Always go to Page 5
+    window.location.href = "page5.html";
+
 });
-            window.location.href = "page5.html";
 
-        });
-        window.addEventListener("pageshow", function () {
-    document.getElementById("ifWasForm").reset();
+
+window.addEventListener("pageshow", function () {
+
+    document
+        .getElementById("ifWasForm")
+        .reset();
+
 });
 
-    </script>
+</script>
+
+    
    
    
 
