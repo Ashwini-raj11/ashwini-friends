@@ -461,11 +461,13 @@
     </main>
 
 
-    <script>
+    <script type="module">
+        import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
         const howSeeForm = document.getElementById("howSeeForm");
 
-        howSeeForm.addEventListener("submit", function(event) {
+        howSeeForm.addEventListener("submit", async function(event) {
 
             event.preventDefault();
 
@@ -491,13 +493,16 @@
     q17: formData.get("q17"),
     q18: formData.get("q18")
 };
+const selectedPerson = localStorage.getItem("selectedPerson");
 
-            const selectedPerson = localStorage.getItem("selectedPerson");
+await addDoc(collection(db, "responses"), {
+    person: selectedPerson,
+    section: "page5",
+    answers: answers,
+    createdAt: new Date()
+});
 
-localStorage.setItem(
-    "howSeeAnswers_" + selectedPerson,
-    JSON.stringify(answers)
-);
+           
 
             window.location.href = "page6.html";
 

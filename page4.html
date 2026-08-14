@@ -79,11 +79,13 @@
 
     </main>
 
-    <script>
+    <script type="module">
+        import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
         const ifWasForm = document.getElementById("ifWasForm");
 
-        ifWasForm.addEventListener("submit", function(event) {
+        ifWasForm.addEventListener("submit",async function(event) {
 
             event.preventDefault();
 
@@ -109,6 +111,12 @@ localStorage.setItem(
     "ifWasAnswers_" + selectedPerson,
     JSON.stringify(answers)
 );
+    await addDoc(collection(db, "responses"), {
+    person: selectedPerson,
+    section: "ifWas",
+    answers: answers,
+    createdAt: new Date()
+});
             window.location.href = "page5.html";
 
         });

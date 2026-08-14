@@ -178,11 +178,13 @@
     </main>
 
 
-    <script>
+   <script type="module">
+    import { db } from "./firebase.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
         const honestForm = document.getElementById("honestForm");
 
-        honestForm.addEventListener("submit", function(event) {
+        honestForm.addEventListener("submit",  async function(event) {
 
             event.preventDefault();
 
@@ -203,13 +205,16 @@
     q11: formData.get("q11")
 
 };
+const selectedPerson = localStorage.getItem("selectedPerson");
 
-            const selectedPerson = localStorage.getItem("selectedPerson");
+await addDoc(collection(db, "responses"), {
+    person: selectedPerson,
+    section: "honest",
+    answers: answers,
+    createdAt: new Date()
+});
 
-localStorage.setItem(
-    "honestAnswers_" + selectedPerson,
-    JSON.stringify(answers)
-);
+           
             window.location.href = "page7.html";
 
 
