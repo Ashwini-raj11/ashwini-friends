@@ -126,28 +126,7 @@ ifWasForm.addEventListener("submit", async function(event) {
 
 
     // Try saving to Firebase
-    try {
-
-        await addDoc(
-            collection(db, "responses"),
-            {
-                person: selectedPerson,
-                section: "ifWas",
-                answers: answers,
-                createdAt: new Date()
-            }
-        );
-
-        console.log("Page 4 saved to Firebase ✅");
-
-    } catch (error) {
-
-        console.error(
-            "Firebase save failed:",
-            error
-        );
-
-    }
+    
 
 
     // Always go to Page 5
