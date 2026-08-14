@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Choose Your Person ✨</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="question-page">
+
+    <p class="small-title">✨ A LITTLE SECRET ✨</p>
+
+    <h1>Choose Your Person 👀</h1>
+
+    <p id="page2Message">
+        Enter your name to continue...
+    </p>
+
+    <div id="nameSection">
+        <input
+            type="text"
+            id="nameInput"
+            placeholder="Enter your name ✍️"
+            autocomplete="off"
+        >
+
+        <button id="continueBtn">
+            CONTINUE ✨
+        </button>
+    </div>
+
+    <div id="passwordSection" style="display: none;">
+
+        <p class="small-title">🔐 SECRET ACCESS</p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Enter your password 🔑"
+            autocomplete="off"
+        >
+
+        <button id="unlockBtn">
+            UNLOCK ❤️
+        </button>
+
+    </div>
+
+</main>
+
+    <script>
+
+    const continueBtn = document.getElementById("continueBtn");
+    const unlockBtn = document.getElementById("unlockBtn");
+
+    const nameInput = document.getElementById("nameInput");
+    const passwordInput = document.getElementById("passwordInput");
+
+    const page2Message = document.getElementById("page2Message");
+
+    const nameSection = document.getElementById("nameSection");
+    const passwordSection = document.getElementById("passwordSection");
+
+
+    const friends = {
+
+        "prabhu": "prabhu123",
+
+        "bernice ruth": "bernice123",
+
+        "dhanush": "dhanush123",
+
+        "karthi": "karthi123",
+
+        "franklin": "franklin123",
+
+        "vasu": "vasu123",
+
+        "selva": "selva123",
+
+        "oli": "oli123",
+
+        "varsha": "varsha123",
+
+        "siva priya": "sivapriya123",
+
+        "jani": "jani123",
+
+        "jeya": "jeya123",
+
+        "aishwarya": "aishwarya123",
+
+        "rani": "rani123",
+
+        "namitha": "namitha123",
+
+        
+
+    };
+
+
+    let selectedPerson = "";
+
+
+    // NAME CHECK
+
+    continueBtn.addEventListener("click", function () {
+
+        const name = nameInput.value.trim().toLowerCase();
+
+
+        if (name === "") {
+
+            page2Message.textContent =
+                "Please enter your name 👀";
+
+            return;
+        }
+
+
+        if (friends[name]) {
+
+            selectedPerson = name;
+
+            page2Message.textContent =
+                "Ahh... so this is for you. 👀";
+
+
+            nameSection.style.display = "none";
+
+            passwordSection.style.display = "block";
+
+        }
+
+        else {
+
+            page2Message.textContent =
+                "Hmm... I don't recognize you 👀";
+
+        }
+
+    });
+
+
+    // PASSWORD CHECK
+
+    unlockBtn.addEventListener("click", function () {
+
+        const password = passwordInput.value;
+
+
+        if (password === friends[selectedPerson]) {
+            localStorage.setItem("selectedPerson", selectedPerson);
+
+            page2Message.textContent =
+                "✨ ACCESS GRANTED ✨";
+
+
+            setTimeout(function () {
+
+                window.location.href = "page3.html";
+
+            }, 1000);
+
+        }
+
+        else {
+
+            page2Message.textContent =
+                "Wrong password 👀 Try again.";
+
+            passwordInput.value = "";
+
+        }
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Magical World ✨</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="question-page magical-page">
+
+        <p class="small-title">✨ WELCOME TO YOUR LITTLE WORLD ✨</p>
+
+        <h1 id="welcomeName">Welcome ✨</h1>
+
+        <p class="magical-text">
+            You answered correctly... 💜
+        </p>
+
+        <p class="magical-text">
+            But that's not why you're here. 👀
+        </p>
+
+        <button id="beginBtn">
+            LET'S BEGIN ✨
+        </button>
+
+    </main>
+
+    <script>
+
+        const selectedPerson = localStorage.getItem("selectedPerson");
+
+        const welcomeName = document.getElementById("welcomeName");
+        const beginBtn = document.getElementById("beginBtn");
+
+        if (selectedPerson) {
+
+            const formattedName =
+                selectedPerson
+                    .split(" ")
+                    .map(word =>
+                        word.charAt(0).toUpperCase() + word.slice(1)
+                    )
+                    .join(" ");
+
+            welcomeName.textContent =
+                "Welcome, " + formattedName + " ✨";
+
+        } else {
+
+            welcomeName.textContent =
+                "Welcome, Mystery Person ✨";
+
+        }
+
+        beginBtn.addEventListener("click", function () {
+
+            window.location.href = "page4.html";
+
+        });
+
+    </script>
+
+</body>
+</html>

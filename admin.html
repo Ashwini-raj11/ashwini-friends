@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Private Access 🔐</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="question-page">
+
+        <p class="small-title">🔐 PRIVATE ACCESS 🔐</p>
+
+        <h1>Ashwini's Private Space ❤️</h1>
+
+        <p id="adminMessage">
+            Enter your password to continue.
+        </p>
+
+        <div class="admin-box">
+
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Enter password 🔑"
+                autocomplete="off"
+            >
+
+            <button id="adminLogin">
+                UNLOCK ❤️
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        const adminPassword = "ashwini123";
+
+        const passwordInput =
+            document.getElementById("adminPassword");
+
+        const adminLogin =
+            document.getElementById("adminLogin");
+
+        const adminMessage =
+            document.getElementById("adminMessage");
+
+
+        adminLogin.addEventListener("click", function () {
+
+            const enteredPassword =
+                passwordInput.value;
+
+
+            if (enteredPassword === adminPassword) {
+
+                localStorage.setItem(
+                    "adminAccess",
+                    "granted"
+                );
+
+                adminMessage.textContent =
+                    "✨ ACCESS GRANTED ✨";
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "responses.html";
+
+                }, 800);
+
+            }
+
+            else {
+
+                adminMessage.textContent =
+                    "Wrong password 👀 Try again.";
+
+                passwordInput.value = "";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

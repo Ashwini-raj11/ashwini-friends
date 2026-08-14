@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tell Me Honestly 💌</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="question-page page6">
+
+        <p class="small-title">💌 ONE LAST THING 💌</p>
+
+        <h1>Tell Me Honestly... ❤️</h1>
+
+        <p class="page-intro">
+            Take your time. Just tell me what you really feel. 💭
+        </p>
+
+        <form id="honestForm" autocomplete="off">
+
+            <!-- Question 1 -->
+            <div class="question-box">
+                <label>
+                    1. Ashwini-ya first time paathappo ungalukku enna thonichu? 👀
+                </label>
+
+                <textarea
+                    name="q1"
+                    placeholder="Tell me honestly..."
+                ></textarea>
+            </div>
+
+
+            <!-- Question 2 -->
+            <div class="question-box">
+                <label>
+                    2. Ashwini kooda ungalukku irukkura oru nalla memory sollunga. ❤️
+                </label>
+
+                <textarea
+                    name="q2"
+                    placeholder="Your favourite memory..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- Question 3 -->
+            <div class="question-box">
+                <label>
+                    3. Ashwini-kitta ungalukku pidicha good things enna? 🌸
+                </label>
+
+                <textarea
+                    name="q3"
+                    placeholder="What do you like about her?"
+                ></textarea>
+            </div>
+
+
+            <!-- Question 4 -->
+            <div class="question-box">
+                <label>
+                    4. Ashwini-kitta improve panna vendiya oru vishayam enna? 💭
+                </label>
+
+                <textarea
+                    name="q4"
+                    placeholder="Be honest... no judgement ❤️"
+                ></textarea>
+            </div>
+
+
+            <!-- Question 5 -->
+            <div class="question-box">
+                <label>
+                    5. Ungal perspective-la Ashwini eppadi patta ponnu? ✨
+                </label>
+
+                <textarea
+                    name="q5"
+                    placeholder="Describe Ashwini..."
+                ></textarea>
+            </div>
+
+
+            <!-- Question 6 -->
+            <div class="question-box">
+                <label>
+                    6. Ashwini-oda friendship-a life-long continue panna viruppama? Why? ❤️
+                </label>
+
+                <textarea
+                    name="q6"
+                    placeholder="Tell me why..."
+                ></textarea>
+            </div>
+
+
+            <!-- Question 7 -->
+            <div class="question-box">
+                <label>
+                    7. Ashwini-kitta ippo oru vishayam sollanum-na enna solluveenga? 💌
+                </label>
+
+                <textarea
+                    name="q7"
+                    placeholder="Something you want to tell her..."
+                ></textarea>
+            </div>
+
+
+            <!-- Question 8 -->
+            <div class="question-box">
+                <label>
+                    8. Ashwini-kku oru advice kudukkanum-na enna advice kuduppeenga? 🌷
+                </label>
+
+                <textarea
+                    name="q8"
+                    placeholder="Your advice..."
+                ></textarea>
+            </div>
+
+
+            <!-- Question 9 -->
+            <div class="question-box">
+                <label>
+                    9. Ashwini-ku nee avalo percent kudupinga? 💯❤️
+                </label>
+
+                <input
+                    type="number"
+                    name="q9"
+                    min="0"
+                    max="100"
+                    placeholder="Enter percentage"
+                >
+            </div>
+
+
+            <!-- Question 10 -->
+            <div class="question-box">
+                <label>
+                    10. Next life-la Ashwini ungalukku enna relationship-la varanum-nu virumbureenga? 🌸
+                </label>
+
+                <textarea
+                    name="q10"
+                    placeholder="Your answer..."
+                ></textarea>
+            </div>
+            <!-- Question 11 -->
+            <div class="question-box">
+               <label>
+                 11. Ashwini-kitta oru vishayam solla vandhu, aana sollama vittadhu edhavadhu irukka? 💭
+                        Appadi irundha, enna solla vandheenga?
+              </label>
+
+                 <textarea
+                       name="q11"
+                       placeholder="You can tell me honestly... ❤️"
+                 ></textarea>
+            </div>
+
+
+            <button type="submit" class="next-btn">
+                CONTINUE ❤️
+            </button>
+
+        </form>
+
+    </main>
+
+
+    <script>
+
+        const honestForm = document.getElementById("honestForm");
+
+        honestForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const formData = new FormData(honestForm);
+
+            const answers = {
+
+    q1: formData.get("q1"),
+    q2: formData.get("q2"),
+    q3: formData.get("q3"),
+    q4: formData.get("q4"),
+    q5: formData.get("q5"),
+    q6: formData.get("q6"),
+    q7: formData.get("q7"),
+    q8: formData.get("q8"),
+    q9: formData.get("q9"),
+    q10: formData.get("q10"),
+    q11: formData.get("q11")
+
+};
+
+            const selectedPerson = localStorage.getItem("selectedPerson");
+
+localStorage.setItem(
+    "honestAnswers_" + selectedPerson,
+    JSON.stringify(answers)
+);
+            window.location.href = "page7.html";
+
+
+        });
+        window.addEventListener("pageshow", function () {
+    document.getElementById("honestForm").reset();
+});
+
+    </script>
+
+</body>
+</html>

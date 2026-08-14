@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>If I Was... 🌸</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="question-page page4">
+
+        <p class="small-title">🌸 A LITTLE GAME 🌸</p>
+
+        <h1>If I Was... ✨</h1>
+
+        <p class="page-intro">
+            There are no right or wrong answers. ❤️
+        </p>
+<form id="ifWasForm" autocomplete="off">
+            <div class="question-box">
+                <label>If I was a flower, which flower would I be? 🌸</label>
+                <input type="text" name="flower" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was an actress, who would I be? 🎬</label>
+                <input type="text" name="actress" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was a song, which song would I be? 🎵</label>
+                <input type="text" name="song" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was a food, what would I be? 🍕</label>
+                <input type="text" name="food" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was a place, where would I be? 🌍</label>
+                <input type="text" name="place" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was an animal, which animal would I be? 🦋</label>
+                <input type="text" name="animal" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was a colour, which colour would I be? 🎨</label>
+                <input type="text" name="colour" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was a cartoon character, who would I be? 🧸</label>
+                <input type="text" name="cartoon" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was a sweet, which sweet would I be? 🍬</label>
+                <input type="text" name="sweet" placeholder="Your answer...">
+            </div>
+
+            <div class="question-box">
+                <label>If I was a fruit, which fruit would I be? 🍓</label>
+                <input type="text" name="fruit" placeholder="Your answer...">
+            </div>
+
+            <button type="submit" class="next-btn">
+                NEXT ✨
+            </button>
+
+        </form>
+
+    </main>
+
+    <script>
+
+        const ifWasForm = document.getElementById("ifWasForm");
+
+        ifWasForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const formData = new FormData(ifWasForm);
+
+            const answers = {
+
+                flower: formData.get("flower"),
+                actress: formData.get("actress"),
+                song: formData.get("song"),
+                food: formData.get("food"),
+                place: formData.get("place"),
+                animal: formData.get("animal"),
+                colour: formData.get("colour"),
+                cartoon: formData.get("cartoon"),
+                sweet: formData.get("sweet"),
+                fruit: formData.get("fruit")
+
+            };
+const selectedPerson = localStorage.getItem("selectedPerson");
+
+localStorage.setItem(
+    "ifWasAnswers_" + selectedPerson,
+    JSON.stringify(answers)
+);
+            window.location.href = "page5.html";
+
+        });
+        window.addEventListener("pageshow", function () {
+    document.getElementById("ifWasForm").reset();
+});
+
+    </script>
+   
+   
+
+</body>
+</html>

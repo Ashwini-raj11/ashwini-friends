@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Friends Responses 🔐</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="question-page responses-page">
+
+        <p class="small-title">🔐 PRIVATE SPACE 🔐</p>
+
+        <h1>Friends Responses ❤️</h1>
+
+        <p class="page-intro">
+            Choose a friend to see their answers. ✨
+        </p>
+
+        <div class="responses-list">
+
+            <button onclick="viewResponse('prabhu')">Prabhu ❤️</button>
+
+            <button onclick="viewResponse('bernice ruth')">
+                Bernice Ruth ❤️
+            </button>
+
+            <button onclick="viewResponse('dhanush')">
+                Dhanush ❤️
+            </button>
+
+            <button onclick="viewResponse('karthi')">
+                Karthi ❤️
+            </button>
+
+            <button onclick="viewResponse('franklin')">
+                Franklin ❤️
+            </button>
+
+            <button onclick="viewResponse('vasu')">
+                Vasu ❤️
+            </button>
+
+            <button onclick="viewResponse('selva')">
+                Selva ❤️
+            </button>
+
+            <button onclick="viewResponse('oli')">
+                Oli ❤️
+            </button>
+
+            <button onclick="viewResponse('varsha')">
+                Varsha ❤️
+            </button>
+
+            <button onclick="viewResponse('siva priya')">
+                Siva Priya ❤️
+            </button>
+
+            <button onclick="viewResponse('jani')">
+                Jani ❤️
+            </button>
+
+            <button onclick="viewResponse('jeya')">
+                Jeya ❤️
+            </button>
+
+            <button onclick="viewResponse('aishwarya')">
+                Aishwarya ❤️
+            </button>
+
+            <button onclick="viewResponse('rani')">
+                Rani ❤️
+            </button>
+
+            <button onclick="viewResponse('namitha')">
+                Namitha ❤️
+            </button>
+
+        </div>
+        <button class="next-btn" onclick="logoutAdmin()">
+    LOGOUT 🔒
+</button>
+
+    </main>
+
+
+    <script>
+
+    // Admin access check
+    const adminAccess = localStorage.getItem("adminAccess");
+
+    if (adminAccess !== "granted") {
+        window.location.href = "admin.html";
+    }
+
+
+    // View friend's response
+    function viewResponse(person) {
+
+        localStorage.setItem(
+            "viewingPerson",
+            person
+        );
+
+        window.location.href = "view-response.html";
+    }
+
+
+    // Logout
+    function logoutAdmin() {
+
+        localStorage.removeItem("adminAccess");
+
+        window.location.href = "admin.html";
+    }
+
+</script>
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Friend Response ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="question-page responses-page">
+
+        <p class="small-title">🌸 A LITTLE LOOK INTO YOUR ANSWERS 🌸</p>
+
+        <h1 id="personName">Friend ❤️</h1>
+
+        <!-- PAGE 4 -->
+        <section class="response-section">
+
+            <h2>🌸 If I Was...</h2>
+
+            <div id="ifWasAnswers"></div>
+
+        </section>
+
+
+        <!-- PAGE 5 -->
+        <section class="response-section">
+
+            <h2>🧠 How Do You See Me?</h2>
+
+            <div id="howSeeAnswers"></div>
+
+        </section>
+
+
+        <!-- PAGE 6 -->
+        <section class="response-section">
+
+            <h2>💌 Tell Me Honestly</h2>
+
+            <div id="honestAnswers"></div>
+
+        </section>
+
+
+        <button class="next-btn" onclick="goBack()">
+            ← BACK TO FRIENDS
+        </button>
+
+    </main>
+
+
+    <script>
+
+        const person =
+            localStorage.getItem("viewingPerson");
+
+
+        if (!person) {
+
+            document.getElementById("personName").textContent =
+                "No Friend Selected";
+
+        } else {
+
+            const displayName =
+                person
+                    .split(" ")
+                    .map(word =>
+                        word.charAt(0).toUpperCase() + word.slice(1)
+                    )
+                    .join(" ");
+
+            document.getElementById("personName").textContent =
+                displayName + " ❤️";
+
+
+            // PAGE 4 ANSWERS
+
+            const ifWasData =
+                localStorage.getItem(
+                    "ifWasAnswers_" + person
+                );
+
+            const ifWasContainer =
+                document.getElementById("ifWasAnswers");
+
+
+            if (ifWasData) {
+
+                const answers =
+                    JSON.parse(ifWasData);
+
+                const questions = {
+
+                    flower: "🌸 Flower",
+                    actress: "🎬 Actress",
+                    song: "🎵 Song",
+                    food: "🍕 Food",
+                    place: "🌍 Place",
+                    animal: "🦋 Animal",
+                    colour: "🎨 Colour",
+                    cartoon: "🧸 Cartoon Character",
+                    sweet: "🍬 Sweet",
+                    fruit: "🍓 Fruit"
+
+                };
+
+                for (const key in questions) {
+
+                    const box =
+                        document.createElement("div");
+
+                    box.className = "answer-box";
+
+                    box.innerHTML =
+                        "<strong>" +
+                        questions[key] +
+                        "</strong><br>" +
+                        (answers[key] || "No answer");
+
+                    ifWasContainer.appendChild(box);
+                }
+
+            } else {
+
+                ifWasContainer.innerHTML =
+                    "<p>No Page 4 answers yet. 💭</p>";
+            }
+
+
+            // PAGE 5 ANSWERS
+
+            const howSeeData =
+                localStorage.getItem(
+                    "howSeeAnswers_" + person
+                );
+
+            const howSeeContainer =
+                document.getElementById("howSeeAnswers");
+
+
+            if (howSeeData) {
+
+                const answers =
+                    JSON.parse(howSeeData);
+
+                for (const key in answers) {
+
+                    const box =
+                        document.createElement("div");
+
+                    box.className = "answer-box";
+
+                    box.innerHTML =
+                        "<strong>" +
+                        key +
+                        "</strong><br>" +
+                        (answers[key] || "No answer");
+
+                    howSeeContainer.appendChild(box);
+                }
+
+            } else {
+
+                howSeeContainer.innerHTML =
+                    "<p>No Page 5 answers yet. 💭</p>";
+            }
+
+
+            // PAGE 6 ANSWERS
+
+            const honestData =
+                localStorage.getItem(
+                    "honestAnswers_" + person
+                );
+
+            const honestContainer =
+                document.getElementById("honestAnswers");
+
+
+            if (honestData) {
+
+                const answers =
+                    JSON.parse(honestData);
+
+                for (const key in answers) {
+
+                    const box =
+                        document.createElement("div");
+
+                    box.className = "answer-box";
+
+                    box.innerHTML =
+                        "<strong>" +
+                        key +
+                        "</strong><br>" +
+                        (answers[key] || "No answer");
+
+                    honestContainer.appendChild(box);
+                }
+
+            } else {
+
+                honestContainer.innerHTML =
+                    "<p>No Page 6 answers yet. 💭</p>";
+            }
+
+        }
+
+
+        function goBack() {
+
+            window.location.href =
+                "responses.html";
+
+        }
+
+    </script>
+
+</body>
+</html>
