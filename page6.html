@@ -178,52 +178,57 @@
     </main>
 
 
-   <script type="module">
-    import { db } from "./firebase.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+   <script>
 
-        const honestForm = document.getElementById("honestForm");
+const honestForm = document.getElementById("honestForm");
 
-        honestForm.addEventListener("submit",  async function(event) {
+honestForm.addEventListener("submit", function(event) {
 
-            event.preventDefault();
+    event.preventDefault();
 
-            const formData = new FormData(honestForm);
+    const formData = new FormData(honestForm);
 
-            const answers = {
+    const answers = {
 
-    q1: formData.get("q1"),
-    q2: formData.get("q2"),
-    q3: formData.get("q3"),
-    q4: formData.get("q4"),
-    q5: formData.get("q5"),
-    q6: formData.get("q6"),
-    q7: formData.get("q7"),
-    q8: formData.get("q8"),
-    q9: formData.get("q9"),
-    q10: formData.get("q10"),
-    q11: formData.get("q11")
+        q1: formData.get("q1"),
+        q2: formData.get("q2"),
+        q3: formData.get("q3"),
+        q4: formData.get("q4"),
+        q5: formData.get("q5"),
+        q6: formData.get("q6"),
+        q7: formData.get("q7"),
+        q8: formData.get("q8"),
+        q9: formData.get("q9"),
+        q10: formData.get("q10"),
+        q11: formData.get("q11")
 
-};
-const selectedPerson = localStorage.getItem("selectedPerson");
+    };
 
-await addDoc(collection(db, "responses"), {
-    person: selectedPerson,
-    section: "honest",
-    answers: answers,
-    createdAt: new Date()
+
+    const selectedPerson =
+        localStorage.getItem("selectedPerson");
+
+
+    localStorage.setItem(
+        "honestAnswers_" + selectedPerson,
+        JSON.stringify(answers)
+    );
+
+
+    window.location.href = "page7.html";
+
 });
 
-           
-            window.location.href = "page7.html";
 
+window.addEventListener("pageshow", function () {
 
-        });
-        window.addEventListener("pageshow", function () {
-    document.getElementById("honestForm").reset();
+    document
+        .getElementById("honestForm")
+        .reset();
+
 });
 
-    </script>
+</script>
 
 </body>
 </html>

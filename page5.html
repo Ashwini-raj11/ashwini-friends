@@ -461,57 +461,63 @@
     </main>
 
 
-    <script type="module">
-        import { db } from "./firebase.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    <script>
 
-        const howSeeForm = document.getElementById("howSeeForm");
+const howSeeForm = document.getElementById("howSeeForm");
 
-        howSeeForm.addEventListener("submit", async function(event) {
+howSeeForm.addEventListener("submit", function(event) {
 
-            event.preventDefault();
+    event.preventDefault();
 
-            const formData = new FormData(howSeeForm);
+    const formData = new FormData(howSeeForm);
 
-           const answers = {
-    q1: formData.get("q1"),
-    q2: formData.get("q2"),
-    q3: formData.get("q3"),
-    q4: formData.get("q4"),
-    q5: formData.get("q5"),
-    q6: formData.get("q6"),
-    q7: formData.get("q7"),
-    q8: formData.get("q8"),
-    q9: formData.get("q9"),
-    q10: formData.get("q10"),
-    q11: formData.get("q11"),
-    q12: formData.get("q12"),
-    q13: formData.get("q13"),
-    q14: formData.get("q14"),
-    q15: formData.get("q15"),
-    q16: formData.get("q16"),
-    q17: formData.get("q17"),
-    q18: formData.get("q18")
-};
-const selectedPerson = localStorage.getItem("selectedPerson");
+    const answers = {
 
-await addDoc(collection(db, "responses"), {
-    person: selectedPerson,
-    section: "page5",
-    answers: answers,
-    createdAt: new Date()
+        q1: formData.get("q1"),
+        q2: formData.get("q2"),
+        q3: formData.get("q3"),
+        q4: formData.get("q4"),
+        q5: formData.get("q5"),
+        q6: formData.get("q6"),
+        q7: formData.get("q7"),
+        q8: formData.get("q8"),
+        q9: formData.get("q9"),
+        q10: formData.get("q10"),
+        q11: formData.get("q11"),
+        q12: formData.get("q12"),
+        q13: formData.get("q13"),
+        q14: formData.get("q14"),
+        q15: formData.get("q15"),
+        q16: formData.get("q16"),
+        q17: formData.get("q17"),
+        q18: formData.get("q18")
+
+    };
+
+
+    const selectedPerson =
+        localStorage.getItem("selectedPerson");
+
+
+    localStorage.setItem(
+        "howSeeAnswers_" + selectedPerson,
+        JSON.stringify(answers)
+    );
+
+
+    window.location.href = "page6.html";
+
 });
 
-           
 
-            window.location.href = "page6.html";
+window.addEventListener("pageshow", function () {
 
-        });
-        window.addEventListener("pageshow", function () {
-    document.getElementById("howSeeForm").reset();
+    document
+        .getElementById("howSeeForm")
+        .reset();
+
 });
 
-    </script>
-
+</script>
 </body>
 </html>
