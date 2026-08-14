@@ -139,16 +139,19 @@ if (!person) {
             }
 
 
-            else if (data.section === "page5") {
+            else if (
+    data.section === "page5" ||
+    data.section === "howSee"
+) {
 
-                foundPage5 = true;
+    foundPage5 = true;
 
-                displayAnswers(
-                    data.answers,
-                    howSeeContainer
-                );
+    displayAnswers(
+        data.answers,
+        howSeeContainer
+    );
 
-            }
+}
 
 
             else if (data.section === "honest") {
