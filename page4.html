@@ -78,7 +78,15 @@
         </form>
 
     </main>
-    <script >
+    
+        <script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
 
@@ -121,6 +129,20 @@ ifWasForm.addEventListener("submit", async function(event) {
 
 
     // Try saving to Firebase
+    try {
+
+    await addDoc(collection(db, "responses"), {
+        person: selectedPerson,
+        section: "ifWas",
+        answers: answers,
+        createdAt: new Date()
+    });
+
+} catch (error) {
+
+    console.error("Firebase save error:", error);
+
+}
     
 
 
